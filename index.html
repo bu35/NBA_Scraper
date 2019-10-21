@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel='stylesheet' href='./index.css'>
+    <title>NBA Scraper</title>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+    <script>
+    function getSchedule(){
+        $.ajax({
+            type: 'POST',
+            url: '/schedule',
+            dataType: 'text',
+            success: function(msg){
+                $('#schedule').html(msg);
+            },
+            error: function(msg){
+                $('#schedule').html("ERROR");
+            }
+        });
+    }
+    function getPlayerID(){
+        $.ajax({
+            type: 'POST',
+            url: '/roster',
+            dataType: 'text',
+            success: function(msg){
+                $('#left').html(msg);
+            },
+            error: function(err){
+                $('#left').html('Error retrieving Player Data ' + err);
+            }
+        });
+    }
+
+    $(document).ready(function(){
+        getSchedule();
+        getPlayerID();
+        $('#positionButton').click(function(){
+            var position = $('#selected').val();
+            $('#positionTable').html(position);
+            $.ajax({
+                type: 'GET',
+                url: '/searchPositions',
+                data: {
+                    pos : position
+                },
+                dataType:'text',
+                success: function(msg){
+                    $('#positionTable').html(msg);
+                },
+                error: function(err){
+                    $('#positionTable').html("ERROR");
+                }
+            })
+        });
+    });
+    </script>
+</head>
+
+<body>
+    <div id='title'>
+        <h1>76ers NBA Scraper<img src='Images\76ers-logo.png' alt='76ers-logo.png' width='60' height='60' align='left'><img src='Images\nba-logo.png' alt='nba-logo.png' width='120' height='80' align='right'></h1>
+    </div>
+    <!-- p>NBA Scraper: Web scraper to display data and statistics regarding the NBA</p> -->
+    <div id='left'>
+    </div>
+    <div id='right'>
+        <div id='schedule'>
+        </div>
+        <div id='info'>
+            <div id = 'textbox'>
+                <p>Search by Position</p>
+                <select id='selected'>
+                    <option value = "C">
+                        Center
+                    </option>
+                    <option value = "F">
+                        Forward
+                    </option>
+                    <option value = "G">
+                        Guard
+                    </option>
+                </select>
+                <button id = 'positionButton'>Submit</button>
+            </div>
+            <div id = 'positionTable'>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

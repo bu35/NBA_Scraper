@@ -1,0 +1,62 @@
+/* COLORS ARE FROM https://teamcolorcodes.com/philadelphia-76ers-color-codes/ */
+/* BLUE - #006BB6, RED - #ED174C, NAVY - #002B5C, SILVER - #C4CED4 */
+html, body {
+    font-family: consolas;
+    background-color: #006BB6;
+    height: 100%;
+    width: 100%;
+}
+h1, p {
+    font-family: consolas;
+    color: #002B5C;
+}
+table {
+    border-collapse: collapse;
+}
+table, th, td {
+    border: 1px solid black;
+}
+#title{
+    text-align: center;
+    height: 15%;
+    width: 100%;
+    font-size: 30px;
+}
+#left{
+    text-align: center;
+    background: #C4CED4;
+    height: 85%;
+    width: 50%;
+    float: left;
+    overflow: scroll;
+}
+#right{
+    background: aliceblue;
+    height: 85%;
+    width: 50%;
+    float: right;
+    position: relative;
+}
+#schedule{
+    text-align: center;
+    height: 50%;
+    width: 100%;
+    float: left;
+    overflow: scroll;
+}
+#info{
+    text-align: center;
+    height: 50%;
+    width: 100%;
+    float: right;
+    overflow:scroll;
+}
+#textbox{
+    height: 20%;
+    width: 100%;
+}
+#positionTable{
+    height: 80%;
+    width: 100%;
+    overflow:scroll;
+}
